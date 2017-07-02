@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import dev.jpp.listapi.converter.ListTypeConverter;
+import dev.jpp.listapi.converter.Converter;
 import dev.jpp.listapi.entity.ListType;
 import dev.jpp.listapi.model.ListTypeModel;
 import dev.jpp.listapi.repository.ListTypeRepository;
@@ -19,9 +19,11 @@ public class ListTypeServiceJpaImpl implements ListTypeService {
 	@Qualifier("listTypeRepository")
 	private ListTypeRepository repository;
 	
-	@Autowired
-	@Qualifier("listTypeConverter")
-	private ListTypeConverter converter;
+//	@Autowired
+//	@Qualifier("listTypeConverter")
+//	private ListTypeConverter converter;
+	
+	private Converter<ListType, ListTypeModel> converter = new Converter<>(ListType.class, ListTypeModel.class);
 	
 	@Override
 	public ListTypeModel add(ListTypeModel model) {

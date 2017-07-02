@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import dev.jpp.listapi.converter.GuestListConverter;
+import dev.jpp.listapi.converter.Converter;
 import dev.jpp.listapi.entity.GuestList;
 import dev.jpp.listapi.model.GuestListModel;
 import dev.jpp.listapi.repository.GuestListRepository;
@@ -19,9 +19,11 @@ public class GuestListServiceJpaImpl implements GuestListService {
 	@Qualifier("guestListRepository")
 	private GuestListRepository repository;
 	
-	@Autowired
-	@Qualifier("guestListConverter")
-	private GuestListConverter converter;
+//	@Autowired
+//	@Qualifier("guestListConverter")
+//	private GuestListConverter converter;
+	
+	private Converter<GuestList, GuestListModel> converter = new Converter<>(GuestList.class, GuestListModel.class);
 	
 	@Override
 	public GuestListModel add(GuestListModel model) {

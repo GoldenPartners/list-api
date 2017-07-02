@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import dev.jpp.listapi.converter.EventConverter;
+import dev.jpp.listapi.converter.Converter;
 import dev.jpp.listapi.entity.Event;
 import dev.jpp.listapi.model.EventModel;
 import dev.jpp.listapi.repository.EventRepository;
@@ -19,9 +19,11 @@ public class EventServiceJpaImpl implements EventService {
 	@Qualifier("eventRepository")
 	private EventRepository repository;
 	
-	@Autowired
-	@Qualifier("eventConverter")
-	private EventConverter converter;
+//	@Autowired
+//	@Qualifier("eventConverter")
+//	private EventConverter converter;
+	
+	private Converter<Event, EventModel> converter = new Converter<>(Event.class, EventModel.class);
 	
 	@Override
 	public EventModel add(EventModel eventModel) {

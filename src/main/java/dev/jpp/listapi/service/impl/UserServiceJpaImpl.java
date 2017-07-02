@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import dev.jpp.listapi.converter.UserConverter;
+import dev.jpp.listapi.converter.Converter;
 import dev.jpp.listapi.entity.User;
 import dev.jpp.listapi.model.UserModel;
 import dev.jpp.listapi.repository.UserRepository;
@@ -19,10 +19,12 @@ public class UserServiceJpaImpl implements UserService {
 	@Qualifier("userRepository")
 	private UserRepository repository;
 	
-	@Autowired
-	@Qualifier("userConverter")
-	private UserConverter converter;
+//	@Autowired
+//	@Qualifier("userConverter")
+//	private UserConverter converter;
 
+	private Converter<User, UserModel> converter = new Converter<>(User.class, UserModel.class);
+	
 	@Override
 	public UserModel add(UserModel userModel) {
 		User user = repository.save(converter.modelToEntity(userModel));
