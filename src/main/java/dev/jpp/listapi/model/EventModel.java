@@ -3,12 +3,16 @@ package dev.jpp.listapi.model;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 public class EventModel {
 	private int id;
 	private String name;
 	private String description;
 	private Date date;
 	private UserModel creator;
+	
+	@JsonManagedReference
 	private List<EventListModel> lists;
 	
 	public EventModel() {

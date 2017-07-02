@@ -1,9 +1,12 @@
 package dev.jpp.listapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 public class GuestListModel {
 	private int id;
 	private String represent;
 	private UserModel creator;
+	@JsonBackReference
 	private EventListModel eventList;
 	private int numberOfGuests;
 	private String guestsNames;

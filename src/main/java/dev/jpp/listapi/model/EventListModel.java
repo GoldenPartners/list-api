@@ -2,10 +2,15 @@ package dev.jpp.listapi.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 public class EventListModel {
 	private int id;
+	@JsonBackReference
 	private EventModel event;
 	private ListTypeModel listType;
+	@JsonManagedReference
 	private List<GuestListModel> lists;
 	
 	public EventListModel() {

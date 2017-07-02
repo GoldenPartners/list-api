@@ -1,9 +1,13 @@
 package dev.jpp.listapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 public class UserRoleModel {
 	private int id;
-	private UserModel user;
 	private String role;
+	
+	@JsonBackReference
+	private UserModel user;
 	
 	public UserRoleModel() {
 		super();

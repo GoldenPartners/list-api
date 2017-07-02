@@ -2,14 +2,18 @@ package dev.jpp.listapi.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 public class UserModel {
 	private int id;
 	private String name;
 	private String phone;
 	private String email;
 	private String password;
-	private Set<UserRoleModel> roles;
 	private Boolean enabled;
+	
+	@JsonManagedReference
+	private Set<UserRoleModel> roles;
 	
 	public UserModel() {
 		super();
@@ -71,6 +75,6 @@ public class UserModel {
 
 	@Override
 	public String toString() {
-		return "UserModel [id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + ", password=" + password + "]";
+		return "UserModel [id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + ", password=" + password + ", enabled=" + enabled + "]";
 	}
 }
