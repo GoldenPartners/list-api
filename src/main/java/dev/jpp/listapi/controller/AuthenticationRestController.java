@@ -45,6 +45,6 @@ public class AuthenticationRestController {
         final String token = jwtTokenUtil.generateToken(userDetails, device);
 
         // Return the token
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(token, userDetails));
     }
 }

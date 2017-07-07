@@ -36,6 +36,14 @@ public class JwtUser implements UserDetails {
     public String getUsername() {
         return email;
     }
+    
+    public String getName() {
+    	return name;
+    }
+    
+    public String getPhone() {
+    	return phone;
+    }
 
     @JsonIgnore
     @Override
