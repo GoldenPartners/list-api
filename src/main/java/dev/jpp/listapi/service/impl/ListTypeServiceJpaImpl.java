@@ -19,10 +19,6 @@ public class ListTypeServiceJpaImpl implements ListTypeService {
 	@Qualifier("listTypeRepository")
 	private ListTypeRepository repository;
 	
-//	@Autowired
-//	@Qualifier("listTypeConverter")
-//	private ListTypeConverter converter;
-	
 	private Converter<ListType, ListTypeModel> converter = new Converter<>(ListType.class, ListTypeModel.class);
 	
 	@Override
@@ -37,7 +33,7 @@ public class ListTypeServiceJpaImpl implements ListTypeService {
 	}
 
 	@Override
-	public void remove(int id) {
+	public void remove(Long id) {
 		ListType listType = repository.findOne(id);
 		
 		if (listType != null) {
@@ -51,7 +47,7 @@ public class ListTypeServiceJpaImpl implements ListTypeService {
 	}
 
 	@Override
-	public ListTypeModel findById(int id) {
+	public ListTypeModel findById(Long id) {
 		return converter.entityToModel(repository.findOne(id));
 	}
 

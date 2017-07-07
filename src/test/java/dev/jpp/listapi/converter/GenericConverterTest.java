@@ -20,9 +20,9 @@ public class GenericConverterTest {
 	
 	@BeforeClass
 	public static void init() {
-		user = new User(132, "Juan Pablo Petrozzi", "12312412", "juanpablopetrozzi@gmail.com", "admin1234", null, true);
+		user = new User(Long.valueOf(132L), "Juan Pablo Petrozzi", "12312412", "juanpablopetrozzi@gmail.com", "admin1234", null, true);
 		Set<UserRole> roles = new HashSet<>();
-		roles.add(new UserRole(123, user, "admin"));
+		roles.add(new UserRole(Long.valueOf(132L), user, "admin"));
 		user.setRoles(roles);
 		
 		System.out.println(user.toString());

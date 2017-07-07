@@ -3,7 +3,7 @@ package dev.jpp.listapi.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 public class UserRoleModel {
-	private int id;
+	private Long id;
 	private String role;
 	
 	@JsonBackReference
@@ -13,18 +13,18 @@ public class UserRoleModel {
 		super();
 	}
 
-	public UserRoleModel(int id, UserModel user, String role) {
+	public UserRoleModel(Long id, UserModel user, String role) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.role = role;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

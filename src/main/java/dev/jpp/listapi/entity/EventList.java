@@ -18,7 +18,7 @@ public class EventList {
 	@Id
 	@GeneratedValue
 	@Column(name="id")
-	private int id;
+	private Long id;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="event_id", nullable=false)
@@ -35,7 +35,7 @@ public class EventList {
 		super();
 	}
 
-	public EventList(int id, Event event, ListType listType, List<GuestList> guestLists) {
+	public EventList(Long id, Event event, ListType listType, List<GuestList> guestLists) {
 		super();
 		this.id = id;
 		this.event = event;
@@ -43,11 +43,11 @@ public class EventList {
 		this.guestLists = guestLists;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

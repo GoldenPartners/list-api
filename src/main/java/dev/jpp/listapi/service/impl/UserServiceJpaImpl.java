@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import dev.jpp.listapi.converter.Converter;
 import dev.jpp.listapi.entity.User;
 import dev.jpp.listapi.model.UserModel;
 import dev.jpp.listapi.repository.UserRepository;
+import dev.jpp.listapi.service.UserRoleService;
 import dev.jpp.listapi.service.UserService;
 
 @Service("userServiceJpaImpl")
@@ -19,16 +21,24 @@ public class UserServiceJpaImpl implements UserService {
 	@Qualifier("userRepository")
 	private UserRepository repository;
 	
-//	@Autowired
-//	@Qualifier("userConverter")
-//	private UserConverter converter;
-
+	@Autowired
+	@Qualifier("userRoleServiceJpaImpl")
+	private UserRoleService userRoleService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	private Converter<User, UserModel> converter = new Converter<>(User.class, UserModel.class);
 	
 	@Override
 	public UserModel add(UserModel userModel) {
-		User user = repository.save(converter.modelToEntity(userModel));
-		return converter.entityToModel(user);
+		User user = converter.modelToEntity(userModel);
+		user.setPassword(passwordEncoder.encode(userModel.getPassword()));
+		user = repository.save(user);
+		userModel = converter.entityToModel(user);
+		userModel.setRoles(userRoleService.addSetOfRolesForUser(userModel.getRoles()));
+		
+		return userModel; 
 	}
 
 	@Override
@@ -37,7 +47,7 @@ public class UserServiceJpaImpl implements UserService {
 	}
 
 	@Override
-	public void remove(int id) {
+	public void remove(Long id) {
 		User user = repository.findOne(id);
 		
 		if (user != null) {
@@ -51,7 +61,7 @@ public class UserServiceJpaImpl implements UserService {
 	}
 
 	@Override
-	public UserModel findById(int id) {
+	public UserModel findById(Long id) {
 		return converter.entityToModel(repository.findOne(id));
 	}
 

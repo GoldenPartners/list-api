@@ -37,7 +37,7 @@ public class UserRoleRestController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<UserRoleModel> getUserRole(@PathVariable("id") int id) {
+	public ResponseEntity<UserRoleModel> getUserRole(@PathVariable("id") Long id) {
 		UserRoleModel userRole = service.findById(id);
 		return new ResponseEntity<UserRoleModel>(userRole, HttpStatus.OK);
 	}
@@ -60,7 +60,7 @@ public class UserRoleRestController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteUserRole(@PathVariable("id") int id) {
+	public ResponseEntity<Void> deleteUserRole(@PathVariable("id") Long id) {
 		service.remove(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}

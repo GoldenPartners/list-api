@@ -15,7 +15,7 @@ public class GuestList {
 	@Id
 	@GeneratedValue
 	@Column(name="id")
-	private int id;
+	private Long id;
 	
 	@Column(name="represent", nullable=false)
 	private String represent;
@@ -41,7 +41,7 @@ public class GuestList {
 		super();
 	}
 
-	public GuestList(int id, String represent, User creator, EventList eventList, int numberOfGuests, String guestsNames, int presents) {
+	public GuestList(Long id, String represent, User creator, EventList eventList, int numberOfGuests, String guestsNames, int presents) {
 		super();
 		this.id = id;
 		this.represent = represent;
@@ -52,11 +52,11 @@ public class GuestList {
 		this.presents = presents;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 public class EventListModel {
-	private int id;
+	private Long id;
 	@JsonBackReference
 	private EventModel event;
 	private ListTypeModel listType;
@@ -17,7 +17,7 @@ public class EventListModel {
 		super();
 	}
 
-	public EventListModel(int id, EventModel event, ListTypeModel listType, List<GuestListModel> lists) {
+	public EventListModel(Long id, EventModel event, ListTypeModel listType, List<GuestListModel> lists) {
 		super();
 		this.id = id;
 		this.event = event;
@@ -25,11 +25,11 @@ public class EventListModel {
 		this.lists = lists;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -19,10 +19,6 @@ public class EventServiceJpaImpl implements EventService {
 	@Qualifier("eventRepository")
 	private EventRepository repository;
 	
-//	@Autowired
-//	@Qualifier("eventConverter")
-//	private EventConverter converter;
-	
 	private Converter<Event, EventModel> converter = new Converter<>(Event.class, EventModel.class);
 	
 	@Override
@@ -37,7 +33,7 @@ public class EventServiceJpaImpl implements EventService {
 	}
 
 	@Override
-	public void remove(int id) {
+	public void remove(Long id) {
 		Event event = repository.findOne(id);
 		
 		if (event != null) {
@@ -51,7 +47,7 @@ public class EventServiceJpaImpl implements EventService {
 	}
 
 	@Override
-	public EventModel findById(int id) {
+	public EventModel findById(Long id) {
 		return converter.entityToModel(repository.findOne(id));
 	}
 

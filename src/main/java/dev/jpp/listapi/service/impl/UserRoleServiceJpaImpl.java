@@ -1,9 +1,13 @@
 package dev.jpp.listapi.service.impl;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import dev.jpp.listapi.converter.Converter;
@@ -19,10 +23,6 @@ public class UserRoleServiceJpaImpl implements UserRoleService {
 	@Qualifier("userRoleRepository")
 	private UserRoleRepository repository;
 	
-//	@Autowired
-//	@Qualifier("userRoleConverter")
-//	private UserRoleConverter converter;
-	
 	private Converter<UserRole, UserRoleModel> converter = new Converter<>(UserRole.class, UserRoleModel.class);
 	
 	@Override
@@ -37,7 +37,7 @@ public class UserRoleServiceJpaImpl implements UserRoleService {
 	}
 
 	@Override
-	public void remove(int id) {
+	public void remove(Long id) {
 		UserRole userRole = repository.findOne(id);
 		
 		if (userRole != null) {
@@ -51,8 +51,20 @@ public class UserRoleServiceJpaImpl implements UserRoleService {
 	}
 
 	@Override
-	public UserRoleModel findById(int id) {
+	public UserRoleModel findById(Long id) {
 		return converter.entityToModel(repository.findOne(id));
+	}
+
+	@Override
+	public Set<UserRoleModel> addSetOfRolesForUser(Set<UserRoleModel> roles) {
+		Iterator<UserRoleModel> iterator = roles.iterator();
+		Set<UserRoleModel> ret = new HashSet<>();
+        
+        while (iterator.hasNext()) {
+			ret.add(this.add(iterator.next()));
+		}
+        
+		return ret;
 	}
 
 }

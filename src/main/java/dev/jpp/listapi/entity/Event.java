@@ -19,7 +19,7 @@ public class Event {
 	@Id
 	@GeneratedValue
 	@Column(name="id")
-	private int id;
+	private Long id;
 	
 	@Column(name="name", nullable=false)
 	private String name;
@@ -41,7 +41,7 @@ public class Event {
 		super();
 	}
 
-	public Event(int id, String name, String description, Date date, User creator, List<EventList> lists) {
+	public Event(Long id, String name, String description, Date date, User creator, List<EventList> lists) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -51,11 +51,11 @@ public class Event {
 		this.lists = lists;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

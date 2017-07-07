@@ -1,7 +1,7 @@
 package dev.jpp.listapi.model;
 
 public class ListTypeModel {
-	private int id;
+	private Long id;
 	private String code;
 	private String description;
 	
@@ -9,18 +9,18 @@ public class ListTypeModel {
 		super();
 	}
 
-	public ListTypeModel(int id, String code, String description) {
+	public ListTypeModel(Long id, String code, String description) {
 		super();
 		this.id = id;
 		this.code = code;
 		this.description = description;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

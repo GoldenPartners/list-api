@@ -5,7 +5,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 public class UserModel {
-	private int id;
+	private Long id;
 	private String name;
 	private String phone;
 	private String email;
@@ -19,7 +19,7 @@ public class UserModel {
 		super();
 	}
 	
-	public UserModel(int id, String name, String phone, String email, String password, Set<UserRoleModel> roles, Boolean enabled) {
+	public UserModel(Long id, String name, String phone, String email, String password, Set<UserRoleModel> roles, Boolean enabled) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -30,10 +30,10 @@ public class UserModel {
 		this.enabled = enabled;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {

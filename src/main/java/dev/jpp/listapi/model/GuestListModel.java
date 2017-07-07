@@ -3,7 +3,7 @@ package dev.jpp.listapi.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 public class GuestListModel {
-	private int id;
+	private Long id;
 	private String represent;
 	private UserModel creator;
 	@JsonBackReference
@@ -16,7 +16,7 @@ public class GuestListModel {
 		super();
 	}
 	
-	public GuestListModel(int id, String represent, UserModel creator, EventListModel eventList, int numberOfGuests, String guestsNames, int presents) {
+	public GuestListModel(Long id, String represent, UserModel creator, EventListModel eventList, int numberOfGuests, String guestsNames, int presents) {
 		super();
 		this.id = id;
 		this.represent = represent;
@@ -27,11 +27,11 @@ public class GuestListModel {
 		this.presents = presents;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

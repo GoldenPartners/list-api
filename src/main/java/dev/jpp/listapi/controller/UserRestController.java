@@ -38,7 +38,7 @@ public class UserRestController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<UserModel> getUser(@PathVariable("id") int id) {
+	public ResponseEntity<UserModel> getUser(@PathVariable("id") Long id) {
 		UserModel user = service.findById(id);
 		return new ResponseEntity<UserModel>(user, HttpStatus.OK);
 	}
@@ -61,7 +61,7 @@ public class UserRestController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteUser(@PathVariable("id") int id) {
+	public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id) {
 		service.remove(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}

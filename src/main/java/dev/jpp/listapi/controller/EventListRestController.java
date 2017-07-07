@@ -37,7 +37,7 @@ public class EventListRestController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<EventListModel> getEventList(@PathVariable("id") int id) {
+	public ResponseEntity<EventListModel> getEventList(@PathVariable("id") Long id) {
 		EventListModel eventList = service.findById(id);
 		return new ResponseEntity<EventListModel>(eventList, HttpStatus.OK);
 	}
@@ -60,7 +60,7 @@ public class EventListRestController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteEventList(@PathVariable("id") int id) {
+	public ResponseEntity<Void> deleteEventList(@PathVariable("id") Long id) {
 		service.remove(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}

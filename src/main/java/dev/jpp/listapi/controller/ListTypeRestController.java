@@ -37,7 +37,7 @@ public class ListTypeRestController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<ListTypeModel> getListType(@PathVariable("id") int id) {
+	public ResponseEntity<ListTypeModel> getListType(@PathVariable("id") Long id) {
 		ListTypeModel listType = service.findById(id);
 		return new ResponseEntity<ListTypeModel>(listType, HttpStatus.OK);
 	}
@@ -60,7 +60,7 @@ public class ListTypeRestController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteListType(@PathVariable("id") int id) {
+	public ResponseEntity<Void> deleteListType(@PathVariable("id") Long id) {
 		service.remove(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}

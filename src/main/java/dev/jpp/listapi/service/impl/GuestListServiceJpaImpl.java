@@ -19,10 +19,6 @@ public class GuestListServiceJpaImpl implements GuestListService {
 	@Qualifier("guestListRepository")
 	private GuestListRepository repository;
 	
-//	@Autowired
-//	@Qualifier("guestListConverter")
-//	private GuestListConverter converter;
-	
 	private Converter<GuestList, GuestListModel> converter = new Converter<>(GuestList.class, GuestListModel.class);
 	
 	@Override
@@ -37,7 +33,7 @@ public class GuestListServiceJpaImpl implements GuestListService {
 	}
 
 	@Override
-	public void remove(int id) {
+	public void remove(Long id) {
 		GuestList guestList = repository.findOne(id);
 		
 		if (guestList != null) {
@@ -51,7 +47,7 @@ public class GuestListServiceJpaImpl implements GuestListService {
 	}
 
 	@Override
-	public GuestListModel findById(int id) {
+	public GuestListModel findById(Long id) {
 		return converter.entityToModel(repository.findOne(id));
 	}
 

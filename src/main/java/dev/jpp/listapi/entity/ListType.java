@@ -12,7 +12,7 @@ public class ListType {
 	@Id
 	@GeneratedValue
 	@Column(name="id")
-	private int id;
+	private Long id;
 	
 	@Column(name="code")
 	private String code;
@@ -24,18 +24,18 @@ public class ListType {
 		super();
 	}
 
-	public ListType(int id, String code, String description) {
+	public ListType(Long id, String code, String description) {
 		super();
 		this.id = id;
 		this.code = code;
 		this.description = description;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

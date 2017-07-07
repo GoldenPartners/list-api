@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import dev.jpp.listapi.converter.Converter;
-import dev.jpp.listapi.converter.EventListConverter;
 import dev.jpp.listapi.entity.EventList;
 import dev.jpp.listapi.model.EventListModel;
 import dev.jpp.listapi.repository.EventListRepository;
@@ -19,10 +18,6 @@ public class EventListServiceJpaImpl implements EventListService {
 	@Autowired
 	@Qualifier("eventListRepository")
 	private EventListRepository repository;
-	
-//	@Autowired
-//	@Qualifier("eventListConverter")
-//	private EventListConverter converter;
 	
 	private Converter<EventList, EventListModel> converter = new Converter<>(EventList.class, EventListModel.class);
 	
@@ -38,7 +33,7 @@ public class EventListServiceJpaImpl implements EventListService {
 	}
 
 	@Override
-	public void remove(int id) {
+	public void remove(Long id) {
 		EventList eventList = repository.findOne(id);
 		
 		if (eventList != null) {
@@ -52,7 +47,7 @@ public class EventListServiceJpaImpl implements EventListService {
 	}
 
 	@Override
-	public EventListModel findById(int id) {
+	public EventListModel findById(Long id) {
 		return converter.entityToModel(repository.findOne(id));
 	}
 

@@ -37,7 +37,7 @@ public class GuestListRestController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<GuestListModel> getGuestList(@PathVariable("id") int id) {
+	public ResponseEntity<GuestListModel> getGuestList(@PathVariable("id") Long id) {
 		GuestListModel guestList = service.findById(id);
 		return new ResponseEntity<GuestListModel>(guestList, HttpStatus.OK);
 	}
@@ -60,7 +60,7 @@ public class GuestListRestController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteGuestList(@PathVariable("id") int id) {
+	public ResponseEntity<Void> deleteGuestList(@PathVariable("id") Long id) {
 		service.remove(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}

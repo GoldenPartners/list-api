@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class JwtUser implements UserDetails {
-	private final int id;
+	private final Long id;
     private final String name;
     private final String phone;
     private final String email;
@@ -16,7 +16,7 @@ public class JwtUser implements UserDetails {
     private final Collection<? extends GrantedAuthority> authorities;
     private final Boolean enabled;
 
-	public JwtUser(int id, String name, String phone, String email, String password, Collection<? extends GrantedAuthority> authorities, Boolean enabled) {
+	public JwtUser(Long id, String name, String phone, String email, String password, Collection<? extends GrantedAuthority> authorities, Boolean enabled) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -28,7 +28,7 @@ public class JwtUser implements UserDetails {
 	}
 	
 	@JsonIgnore
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

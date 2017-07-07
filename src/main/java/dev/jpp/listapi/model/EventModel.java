@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 public class EventModel {
-	private int id;
+	private Long id;
 	private String name;
 	private String description;
 	private Date date;
@@ -19,7 +19,7 @@ public class EventModel {
 		super();
 	}
 
-	public EventModel(int id, String name, String description, Date date, UserModel creator, List<EventListModel> lists) {
+	public EventModel(Long id, String name, String description, Date date, UserModel creator, List<EventListModel> lists) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -29,11 +29,11 @@ public class EventModel {
 		this.lists = lists;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

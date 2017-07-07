@@ -16,7 +16,7 @@ public class User {
 	@Id
 	@GeneratedValue
 	@Column(name="id")
-	private int id;
+	private Long id;
 	
 	@Column(name="name", nullable=false)
 	private String name;
@@ -40,7 +40,7 @@ public class User {
 		super();
 	}
 	
-	public User(int id, String name, String phone, String email, String password, Set<UserRole> roles, Boolean enabled) {
+	public User(Long id, String name, String phone, String email, String password, Set<UserRole> roles, Boolean enabled) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -51,11 +51,11 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
