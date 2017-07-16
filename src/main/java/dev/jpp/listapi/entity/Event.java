@@ -34,6 +34,9 @@ public class Event {
 	@JoinColumn(name="user_id", nullable=false)
 	private User creator;
 	
+	@Column(name="closed", nullable=false)
+	private Boolean closed;
+	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="event")
 	private List<EventList> lists;
 	
@@ -41,13 +44,14 @@ public class Event {
 		super();
 	}
 
-	public Event(Long id, String name, String description, Date date, User creator, List<EventList> lists) {
+	public Event(Long id, String name, String description, Date date, User creator, Boolean closed, List<EventList> lists) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.date = date;
 		this.creator = creator;
+		this.closed = closed;
 		this.lists = lists;
 	}
 
@@ -89,6 +93,14 @@ public class Event {
 
 	public void setCreator(User creator) {
 		this.creator = creator;
+	}
+	
+	public Boolean isClosed() {
+		return closed;
+	}
+
+	public void setClosed(Boolean closed) {
+		this.closed = closed;
 	}
 
 	public List<EventList> getLists() {
