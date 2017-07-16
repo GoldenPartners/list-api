@@ -1,5 +1,6 @@
 package dev.jpp.listapi.service.impl;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import dev.jpp.listapi.converter.Converter;
 import dev.jpp.listapi.entity.User;
+import dev.jpp.listapi.entity.UserRole;
 import dev.jpp.listapi.model.UserModel;
 import dev.jpp.listapi.repository.UserRepository;
 import dev.jpp.listapi.service.UserRoleService;
@@ -51,6 +53,11 @@ public class UserServiceJpaImpl implements UserService {
 		User user = repository.findOne(id);
 		
 		if (user != null) {
+			Iterator<UserRole> it = user.getRoles().iterator();
+			while (it.hasNext()) {
+				userRoleService.remove(it.next().getId());
+			}
+			
 			repository.delete(user);
 		}
 	}
