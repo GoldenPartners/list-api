@@ -11,7 +11,7 @@ public class EventModel {
 	private String description;
 	private Date date;
 	private UserModel creator;
-	private Boolean closed;
+	private String state;
 	
 	@JsonManagedReference
 	private List<EventListModel> lists;
@@ -20,14 +20,14 @@ public class EventModel {
 		super();
 	}
 
-	public EventModel(Long id, String name, String description, Date date, UserModel creator, Boolean closed, List<EventListModel> lists) {
+	public EventModel(Long id, String name, String description, Date date, UserModel creator, String state, List<EventListModel> lists) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.date = date;
 		this.creator = creator;
-		this.closed = closed;
+		this.state = state;
 		this.lists = lists;
 	}
 
@@ -71,12 +71,12 @@ public class EventModel {
 		this.creator = creator;
 	}
 	
-	public Boolean isClosed() {
-		return closed;
+	public String getState() {
+		return state;
 	}
 
-	public void setClosed(Boolean closed) {
-		this.closed = closed;
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public List<EventListModel> getLists() {
