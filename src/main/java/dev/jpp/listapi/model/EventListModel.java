@@ -9,7 +9,7 @@ public class EventListModel {
 	private Long id;
 	@JsonBackReference
 	private EventModel event;
-	private ListTypeModel listType;
+	private String description;
 	@JsonManagedReference
 	private List<GuestListModel> lists;
 	
@@ -17,11 +17,11 @@ public class EventListModel {
 		super();
 	}
 
-	public EventListModel(Long id, EventModel event, ListTypeModel listType, List<GuestListModel> lists) {
+	public EventListModel(Long id, EventModel event, String description, List<GuestListModel> lists) {
 		super();
 		this.id = id;
 		this.event = event;
-		this.listType = listType;
+		this.description = description;
 		this.lists = lists;
 	}
 
@@ -41,12 +41,12 @@ public class EventListModel {
 		this.event = event;
 	}
 
-	public ListTypeModel getListType() {
-		return listType;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setListType(ListTypeModel listType) {
-		this.listType = listType;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public List<GuestListModel> getLists() {
@@ -59,6 +59,6 @@ public class EventListModel {
 
 	@Override
 	public String toString() {
-		return "EventListModel [id=" + id + ", event=" + event + ", listType=" + listType + ", lists=" + lists + "]";
+		return "EventListModel [id=" + id + ", event=" + event + ", desc=" + description + ", lists=" + lists + "]";
 	}
 }

@@ -24,9 +24,8 @@ public class EventList {
 	@JoinColumn(name="event_id", nullable=false)
 	private Event event;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="listType_id", nullable=false)
-	private ListType listType;
+	@Column(name="description")
+	private String description;
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy="eventList")
 	private List<GuestList> guestLists;
@@ -35,11 +34,11 @@ public class EventList {
 		super();
 	}
 
-	public EventList(Long id, Event event, ListType listType, List<GuestList> guestLists) {
+	public EventList(Long id, Event event, String description, List<GuestList> guestLists) {
 		super();
 		this.id = id;
 		this.event = event;
-		this.listType = listType;
+		this.description = description;
 		this.guestLists = guestLists;
 	}
 
@@ -59,12 +58,12 @@ public class EventList {
 		this.event = event;
 	}
 
-	public ListType getListType() {
-		return listType;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setListType(ListType listType) {
-		this.listType = listType;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public List<GuestList> getGuestLists() {
@@ -77,6 +76,6 @@ public class EventList {
 
 	@Override
 	public String toString() {
-		return "EventList [id=" + id + ", event=" + event + ", listType=" + listType + ", lists=" + guestLists + "]";
+		return "EventList [id=" + id + ", event=" + event + ", desc=" + description + ", lists=" + guestLists + "]";
 	}
 }
