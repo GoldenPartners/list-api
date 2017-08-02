@@ -2,6 +2,7 @@ package dev.jpp.listapi.entity;
 
 public enum Role {
 	ADMIN("admin"),
+	BOSS("boss"),
 	RRPP("rrpp"),
 	RECEPTIONIST("receptionist");
 	
