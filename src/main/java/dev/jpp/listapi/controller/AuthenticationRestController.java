@@ -41,7 +41,8 @@ public class AuthenticationRestController {
         SecurityContextHolder.getContext().setAuthentication(auth);
 
         // Reload password post-security so we can generate token
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authReq.getUsername());
+//        final UserDetails userDetails = userDetailsService.loadUserByUsername(authReq.getUsername());
+        final UserDetails userDetails = (UserDetails) auth.getPrincipal();
         final String token = jwtTokenUtil.generateToken(userDetails, device);
 
         // Return the token

@@ -22,10 +22,10 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByEmail(username);
 
-        if (user == null) {
-            throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
+        if (user != null && user.getEnabled()) {
+        	return JwtUserFactory.create(user);
         } else {
-            return JwtUserFactory.create(user);
+            throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
         }
 	}
 
