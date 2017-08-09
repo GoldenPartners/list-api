@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -35,6 +36,9 @@ public class User {
 	
 	@Column(name="enabled")
 	private Boolean enabled;
+	
+	@OneToOne(fetch=FetchType.LAZY)
+	private User boss;
 	
 	public User() {
 		super();
@@ -105,6 +109,14 @@ public class User {
 
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public User getBoss() {
+		return boss;
+	}
+
+	public void setBoss(User boss) {
+		this.boss = boss;
 	}
 
 	@Override

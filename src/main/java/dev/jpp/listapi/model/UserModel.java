@@ -11,6 +11,7 @@ public class UserModel {
 	private String email;
 	private String password;
 	private Boolean enabled;
+	private UserModel boss;
 	
 	@JsonManagedReference
 	private Set<UserRoleModel> roles;
@@ -33,44 +34,65 @@ public class UserModel {
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public String getPhone() {
 		return phone;
 	}
+	
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	public String getPassword() {
 		return password;
 	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	public Set<UserRoleModel> getRoles() {
 		return roles;
 	}
+	
 	public void setRoles(Set<UserRoleModel> roles) {
 		this.roles = roles;
 	}
+	
 	public Boolean getEnabled() {
 		return enabled;
 	}
+	
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public UserModel getBoss() {
+		return boss;
+	}
+
+	public void setBoss(UserModel boss) {
+		this.boss = boss;
 	}
 
 	@Override
