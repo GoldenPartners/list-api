@@ -2,6 +2,7 @@ package dev.jpp.listapi.service.impl;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,15 +31,22 @@ public class UserServiceJpaImpl implements UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private EmailManager emailManager;
+	
 	private Converter<User, UserModel> converter = new Converter<>(User.class, UserModel.class);
 	
 	@Override
 	public UserModel add(UserModel userModel) {
+		String password = this.makePassword(userModel.getPassword());
+		
 		User user = converter.modelToEntity(userModel);
-		user.setPassword(passwordEncoder.encode(userModel.getPassword()));
+		user.setPassword(passwordEncoder.encode(password));
 		user = repository.save(user);
 		userModel = converter.entityToModel(user);
 		userModel.setRoles(userRoleService.addSetOfRolesForUser(userModel.getRoles()));
+		
+		emailManager.sendRegistrationEmail(userModel.getEmail(), password);
 		
 		return userModel; 
 	}
@@ -71,5 +79,20 @@ public class UserServiceJpaImpl implements UserService {
 	public UserModel findById(Long id) {
 		return converter.entityToModel(repository.findOne(id));
 	}
-
+	
+	private String makePassword(String password) {
+		if (password != null) {
+			return password;
+		}
+		
+		String chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+		StringBuilder builder = new StringBuilder();
+		Random random = new Random();
+		
+		while (builder.length() < 10) {
+			builder.append(chars.charAt(random.nextInt(chars.length())));
+		}
+		
+		return builder.toString();
+	}
 }
