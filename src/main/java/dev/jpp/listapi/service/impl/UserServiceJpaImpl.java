@@ -3,6 +3,7 @@ package dev.jpp.listapi.service.impl;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,6 +14,7 @@ import dev.jpp.listapi.converter.Converter;
 import dev.jpp.listapi.entity.User;
 import dev.jpp.listapi.entity.UserRole;
 import dev.jpp.listapi.model.UserModel;
+import dev.jpp.listapi.model.UserRoleModel;
 import dev.jpp.listapi.repository.UserRepository;
 import dev.jpp.listapi.service.UserRoleService;
 import dev.jpp.listapi.service.UserService;
@@ -53,7 +55,13 @@ public class UserServiceJpaImpl implements UserService {
 
 	@Override
 	public UserModel update(UserModel userModel) {
-		return add(userModel);
+		Set<UserRoleModel> rolesToUpdate = userModel.getRoles();
+		User user = converter.modelToEntity(userModel);
+		user = repository.save(user);
+		userModel = converter.entityToModel(user);
+		userModel.setRoles(userRoleService.updateSetOfRolesForUser(user.getId(), rolesToUpdate));
+		
+		return userModel;
 	}
 
 	@Override

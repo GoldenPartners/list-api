@@ -48,4 +48,9 @@ public class UserRoleModel {
 	public String toString() {
 		return "UserRoleModel [id=" + id + ", user=" + user + ", role=" + role + "]";
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return this.getRole().equals(((UserRoleModel)obj).getRole());
+	}
 }

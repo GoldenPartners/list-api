@@ -27,7 +27,6 @@ public class JwtUser implements UserDetails {
 		this.enabled = enabled;
 	}
 	
-	@JsonIgnore
     public Long getId() {
         return id;
     }

@@ -53,6 +53,11 @@ public class UserRoleServiceJpaImpl implements UserRoleService {
 	public UserRoleModel findById(Long id) {
 		return converter.entityToModel(repository.findOne(id));
 	}
+	
+	@Override
+	public Set<UserRoleModel> getListForUser(Long iduser) {
+		return new HashSet<>(converter.listEntityToListModel(repository.findRolesByUser(iduser)));
+	}
 
 	@Override
 	public Set<UserRoleModel> addSetOfRolesForUser(Set<UserRoleModel> roles) {
@@ -64,6 +69,44 @@ public class UserRoleServiceJpaImpl implements UserRoleService {
 		}
         
 		return ret;
+	}
+
+	@Override
+	public Set<UserRoleModel> updateSetOfRolesForUser(Long iduser, Set<UserRoleModel> roles) {
+		List<UserRoleModel> currentRoles = converter.listEntityToListModel(repository.findRolesByUser(iduser));
+		Iterator<UserRoleModel> updRoles = roles.iterator();
+		Set<UserRoleModel> rolesToAdd = new HashSet<>();
+		
+		while (updRoles.hasNext()) {
+			UserRoleModel updRole = updRoles.next();
+			boolean isnewrole = true;
+			
+			for (UserRoleModel currentRole : currentRoles) {
+				if (updRole.getRole().equals(currentRole.getRole())) {
+					isnewrole = false;
+				}
+			}
+			
+			if (isnewrole) {
+				rolesToAdd.add(updRole);
+			} else {
+				currentRoles.remove(updRole);
+			}
+		}
+		
+		if (rolesToAdd.isEmpty() && currentRoles.isEmpty()) {
+			return roles;
+		}
+		
+		for (UserRoleModel userRoleModel : currentRoles) {
+			this.remove(userRoleModel.getId());
+		}
+		
+		for (UserRoleModel userRoleModel : rolesToAdd) {
+			this.add(userRoleModel);
+		}
+		
+		return this.getListForUser(iduser);
 	}
 
 }
