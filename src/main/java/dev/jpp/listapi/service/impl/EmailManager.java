@@ -84,4 +84,15 @@ public class EmailManager {
 		
 		this.sendEmail(subject, content, email);
 	}
+	
+	public void sendResetPasswordEmail(String email, String password) {
+		String subject = "Reset Password";
+		String content = "<p>Your password was reset!</p>"
+				+ "<p>Username: <strong>" + email + "</strong><br>"
+				+ "Password: <strong>" + password + "</strong></p>"
+				+ "<p>Remember to enter <a href=\"" + url + "\">List Application</a> to change your password to a more secure one.</p>"
+				+ "<p>Best regards. <br>List Team.</p>";
+		
+		this.sendEmail(subject, content, email);
+	}
 }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.jpp.listapi.model.ChangePasswordModel;
+import dev.jpp.listapi.model.ResetPasswordModel;
 import dev.jpp.listapi.model.UserModel;
 import dev.jpp.listapi.service.UserService;
 
@@ -64,5 +66,21 @@ public class UserRestController {
 	public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id) {
 		service.remove(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@PutMapping("/reset-password")
+	public ResponseEntity<Void> resetPassword(@RequestBody ResetPasswordModel model) {
+		service.resetPassword(model);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@PutMapping("/change-password")
+	public ResponseEntity<Void> changePassword(@RequestBody ChangePasswordModel model) {
+		Boolean result = service.changePassword(model);
+		if (result) {
+			return new ResponseEntity<Void>(HttpStatus.OK);			
+		} else {
+			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		}
 	}
 }
