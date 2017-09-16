@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class JwtUser implements UserDetails {
+	private static final long serialVersionUID = 5210005586804543150L;
+	
 	private final Long id;
     private final String name;
     private final String phone;
@@ -42,6 +44,10 @@ public class JwtUser implements UserDetails {
     
     public String getPhone() {
     	return phone;
+    }
+    
+    public String getEmail() {
+    	return email;
     }
 
     @JsonIgnore
